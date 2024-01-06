@@ -17,7 +17,7 @@
         </div>
         <div class="player-container" id="player">
             <h2>
-                You - <span id="playerScore"> 0 </span> <spap class="choice" id="playerChoice"> --- Choice </spap>
+                You - <span id="playerScore"></span> <spap class="choice" id="playerChoice"></spap>
             </h2>
             <i class="far fa-hand-rock" title="Rock" id="playerRock" onclick="select('rock')"></i>
             <i class="far fa-hand-paper"  title="Paper" id="playerPaper" onclick="select('paper')"></i>
@@ -27,7 +27,7 @@
         </div>
         <div class="player-container" id="computer">
             <h2>
-                You - <span id="computerScore"> 0 </span> <spap class="choice" id="computerChoice"> --- Choice </spap>
+                You - <span id="computerScore"></span> <spap class="choice" id="computerChoice"></spap>
             </h2>
             <i class="far fa-hand-rock" title="Rock" id="computerRock"></i>
             <i class="far fa-hand-paper" title="Paper" id="computerPaper"></i>
@@ -35,10 +35,10 @@
             <i class="far fa-hand-lizard" title="Lizard" id="computerLizard"></i>
             <i class="far fa-hand-spock" title="Spock" id="computerSpock"></i>
         </div>
-        <i class="fas fa-sync-alt reset-icon" id="reset" title="Reser"></i>
+        <i class="fas fa-sync-alt reset-icon" id="reset" title="Reset" onclick="resetAll()"></i>
         <div class="result-container">
             <h3 class="result-text" id="resultText">
-                You Won!
+                
             </h3>
         </div>
     </div>

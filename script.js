@@ -18,7 +18,6 @@ const computerLizard = document.getElementById('computerLizard');
 const computerSpock = document.getElementById('computerSpock');
 
 const allGameIcons = document.querySelectorAll('.far');
-let computerChoice = '';
 
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
@@ -27,6 +26,10 @@ const choices = {
   lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
+
+let playerScoreNumber = 0;
+let computerScoreNumber = 0;
+let computerChoice = '';
 
 function computerRandomChoice(){
   const computerChoiceNumber = Math.random();
@@ -73,15 +76,53 @@ function resetSelected(){
   });
 }
 
-function checkResult(){
+function updateScore(playerChoice){
+  if(playerChoice === computerChoice)
+  {
+    resultText.textContent = "It's a tie.";
+  }
+  else
+  {
+    const choice = choices[playerChoice];
+    if(choice.defeats.indexOf(computerChoice) > -1){
+      resultText.textContent = "You Won!";
+      playerScoreNumber++;
+      playerScoreEl.textContent = playerScoreNumber;
+    }
+    else
+    {
+      resultText.textContent = "You Lost!";
+      computerScoreNumber++;
+      computerScoreEl.textContent = computerScoreNumber;
+    }
+  }
+}
+
+function resetAll(){
+  playerScoreNumber= 0;
+  computerScoreNumber = 0;
+  playerScoreEl.textContent = playerScoreNumber;
+  computerScoreEl.textContent = computerScoreNumber;
+  playerChoiceEl.textContent = '';
+  computerChoiceEl.textContent = '';
+  resultText.textContent = '';
+  resetSelected();
+}
+
+function checkResult(playerChoice){
   resetSelected();
   computerRandomChoice();
   displayComputerChoice();
+  updateScore(playerChoice);
+  if(playerScoreNumber === 10 || computerScoreNumber === 10)
+  {
+    setTimeout(resetAll, 500);
+  }
 }
 
 
 function select(playerChoice){
-  checkResult();
+  checkResult(playerChoice);
 switch(playerChoice){
   case 'rock':
     playerRock.classList.add('selected');
@@ -106,3 +147,4 @@ switch(playerChoice){
 }
 }
 
+resetAll();
